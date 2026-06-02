@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Mesa — Restaurant Ordering System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>La</span> Mesa</div>
+  <button class="cart-btn" id="cartToggleBtn" onclick="toggleMobileCart()">
+    🧾 Order
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+</header>
+
+<div class="app">
+  <!-- MENU PANEL -->
+  <main class="menu-panel">
+    <div class="menu-hero">
+      <h2>Our Menu</h2>
+      <p>Fresh ingredients, bold flavors — order your favorites below.</p>
+    </div>
+
+    <div class="category-tabs" id="categoryTabs"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </main>
+
+  <!-- CART PANEL -->
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Your Order</h3>
+      <small id="cartSubtitle">No items yet</small>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <span class="big-emoji">🍽️</span>
+        <span>Your order is empty</span>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-summary" id="cartSummary"></div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="checkout()" disabled>Place Order</button>
+      <button class="clear-btn" onclick="clearCart()">Clear Order</button>
+    </div>
+  </aside>
+</div>
+
+<!-- RECEIPT MODAL -->
+<div class="modal-overlay" id="receiptModal">
+  <div class="modal">
+    <div class="modal-icon">🎉</div>
+    <h2>Order Confirmed!</h2>
+    <p class="order-id" id="orderId"></p>
+    <hr class="receipt-divider" />
+    <div class="receipt-items" id="receiptItems"></div>
+    <hr class="receipt-divider" />
+    <div id="receiptTotals"></div>
+    <button class="modal-close-btn" onclick="closeReceipt()">✓ Done — Start New Order</button>
+  </div>
+</div>
+
+<!-- IMAGE UPLOAD MODAL -->
+<div class="modal-overlay" id="imageModal">
+  <div class="modal image-modal">
+    <h2>Change Photo</h2>
+    <p class="image-modal-sub" id="imageModalSub">Upload an image for this menu item</p>
+
+    <div class="image-drop-zone" id="imageDropZone">
+      <div class="image-preview-wrap" id="imagePreviewWrap">
+        <img id="imagePreview" src="" alt="Preview" />
+      </div>
+      <div class="image-drop-prompt" id="imageDropPrompt">
+        <span class="upload-icon">📷</span>
+        <span class="upload-label">Click to upload or drag & drop</span>
+        <span class="upload-hint">JPG, PNG, WEBP — max 5 MB</span>
+      </div>
+      <input type="file" id="imageFileInput" accept="image/*" />
+    </div>
+
+    <div class="image-modal-actions">
+      <button class="img-save-btn" id="imgSaveBtn" onclick="saveItemImage()" disabled>Save Image</button>
+      <button class="img-remove-btn" id="imgRemoveBtn" onclick="removeItemImage()">Remove Photo</button>
+      <button class="img-cancel-btn" onclick="closeImageModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
