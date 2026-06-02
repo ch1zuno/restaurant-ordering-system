@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Mesa — Restaurant Ordering System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- INTRO SPLASH SCREEN -->
+<div class="intro-screen" id="introScreen">
+  <!-- Slideshow backdrop representing the soul of the restaurant -->
+  <div class="intro-backdrop" id="introBackdrop">
+    <div class="backdrop-slide active" style="background-image: url('images/crispy_lechon.png');"></div>
+    <div class="backdrop-slide" style="background-image: url('images/beef_sinigang.png');"></div>
+    <div class="backdrop-slide" style="background-image: url('images/chicken_inasal.png');"></div>
+    <div class="backdrop-slide" style="background-image: url('images/seafood_karekare.png');"></div>
+    <div class="backdrop-slide" style="background-image: url('images/pork_sisig.png');"></div>
+  </div>
+  
+  <div class="intro-overlay"></div>
+
+  <div class="intro-content">
+    <div class="intro-brand animate-fade-in">
+      <span class="intro-subtitle">Welcome to</span>
+      <h1 class="intro-logo"><span>La</span> Mesa</h1>
+      <p class="intro-tagline">A Culinary Journey of Philippine Flavors</p>
+    </div>
+
+    <!-- Soul of the Restaurant Constellation -->
+    <div class="soul-constellation animate-fade-in-delayed">
+      <span class="soul-tag"><span class="tag-dot"></span>🔥 Charcoal Grilled</span>
+      <span class="soul-tag"><span class="tag-dot"></span>🍲 Slow Simmered</span>
+      <span class="soul-tag"><span class="tag-dot"></span>🥥 Local Ingredients</span>
+      <span class="soul-tag"><span class="tag-dot"></span>🇵🇭 Heritage Recipes</span>
+    </div>
+
+    <!-- Timing Progress Loader -->
+    <div class="intro-loading-container animate-fade-in-delayed">
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar" id="introProgressBar"></div>
+        <div class="progress-glow"></div>
+      </div>
+      <div class="loading-status" id="introLoadingStatus">Preparing the hearth...</div>
+    </div>
+
+    <!-- Interactive Enter Order Button (Appears after 5 seconds loading) -->
+    <button class="start-order-btn" id="startOrderBtn">
+      <span class="btn-text">Begin Gastronomic Journey</span>
+      <span class="btn-glow"></span>
+      <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<header>
+  <div class="logo"><span>La</span> Mesa</div>
+  <button class="cart-btn" id="cartToggleBtn" onclick="toggleMobileCart()">
+    🧾 Order
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+</header>
+
+<div class="app">
+  <!-- MENU PANEL -->
+  <main class="menu-panel">
+    <div class="menu-hero">
+      <h2>Our Menu</h2>
+      <p>Fresh ingredients, bold flavors — order your favorites below.</p>
+    </div>
+
+    <div class="category-tabs" id="categoryTabs"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </main>
+
+  <!-- CART PANEL -->
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Your Order</h3>
+      <small id="cartSubtitle">No items yet</small>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <span class="big-emoji">🍽️</span>
+        <span>Your order is empty</span>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-summary" id="cartSummary"></div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="checkout()" disabled>Place Order</button>
+      <button class="clear-btn" onclick="clearCart()">Clear Order</button>
+    </div>
+  </aside>
+</div>
+
+<!-- RECEIPT MODAL -->
+<div class="modal-overlay" id="receiptModal">
+  <div class="modal">
+    <div class="modal-icon">🎉</div>
+    <h2>Order Confirmed!</h2>
+    <p class="order-id" id="orderId"></p>
+    <hr class="receipt-divider" />
+    <div class="receipt-items" id="receiptItems"></div>
+    <hr class="receipt-divider" />
+    <div id="receiptTotals"></div>
+    <button class="modal-close-btn" onclick="closeReceipt()">✓ Done — Start New Order</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
